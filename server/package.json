@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "db:up": "docker-compose up",
+    "db:seed": "seed -u 'mongodb://user:pass@127.0.0.1:27017/products-db' --db-name products-db --drop-database ./data"
   },
   "author": "",
   "license": "ISC",

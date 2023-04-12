@@ -26,3 +26,31 @@ type Category {
   slug: String!
   name: String!
 }
+
+type Mutation {
+  createProduct(input: NewProduct!): Product!
+  changeUserStatus(
+    input: ChangeUserStatusInput!
+  ): ChangeUserStatusPayload
+}
+
+input ChangeUserStatusInput {
+  clientMutationId: String
+  emoji: String
+  expiresAt: DateTime
+  limitedAvailability: Boolean = false
+  message: String
+  organizationId: ID @possibleTypes(concreteTypes: ["Organization"])
+}
+
+type ChangeUserStatusPayload {
+  clientMutationId: String
+  status: UserStatus
+}
+
+input NewProduct {
+  name: String!
+  description: String!
+  url: String!
+  categoriesIds: [ID!]!
+}
